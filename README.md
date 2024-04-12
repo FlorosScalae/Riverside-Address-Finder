@@ -29,3 +29,7 @@ Finally if you want to visualise the course of the river taken from the file you
 
 All that's left is to place the .gml in the same file folder as the python script and run the program, if successful you should find a csv file containing all of your postcodes in the same folder.
 Note: this program requires an internet connection to function as it makes requests to an external API, because of this it may take some time for the program to finish so don't expect it to finish instantly.
+
+If you have any problems trying to run this program, please contact me and I'll be happy to help.
+
+Thank you for reading.
