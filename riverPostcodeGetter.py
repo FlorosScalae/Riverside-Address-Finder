@@ -33,10 +33,10 @@ def cleanPostcodes(pcs):
     return cleanedPostcodes
 
 #converts British National Grid coordinates to EPSG:4326
-def BNGToLatLong(coords):
+def coordsToLatLong(coords, coordSystem):
     lat = coords[0]
     lng = coords[1]
-    t = Transformer.from_crs("EPSG:27700", "EPSG:4326")
+    t = Transformer.from_crs(coordSystem, "EPSG:4326")
     return t.transform(lat, lng)
 
 #saves a list of the coordinates to a text file
@@ -60,8 +60,11 @@ inputFileName = "OSOpenRivers.gml"
 #name of the output file 
 outputFileName = "{rn} Postcode Data.csv".format(rn=riverName) 
 
+#This contains the coordinate system used by your .gml file, the default is for BNG so you'll need to change this depending on your data
+coordSystem = "EPSG:27700"
+
 #flag used to decide if the lat long coordinates should be saved to a text file
-saveDrawCoords = True
+saveDrawCoords = False
 
 
 #define the api used to request postcodes from
@@ -91,10 +94,10 @@ for coordinates in coordinateStrings:
 
 latLongCoords= []
 
-#convert BNG coorsds to lat long 
+#convert coords to lat long 
 for coordinatePair in coordinateFloats:
     for i in coordinatePair:
-        latLongCoords.append(BNGToLatLong(i))
+        latLongCoords.append(coordsToLatLong(i, coordSystem))
 
 print("Obtained latitude and longitude\n")    
 
